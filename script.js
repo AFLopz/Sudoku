@@ -29,7 +29,7 @@ function start(){
         for (let j = 1; j <= 9; j++) {
             let x = board[i-1];
             if (x.charAt(j-1)==="-"){
-                cadena += "<td onclick='addNumber(this)' onmouseover='highlight(event,this)' onmouseout='highlight(event,this)' id=" + i + "-" + j + "></td>";
+                cadena += "<td onclick='addNumber(this),checkright(this)'  onmouseover='highlight(event,this)' onmouseout='highlight(event,this)' id=" + i + "-" + j + "></td>";
             }else{
                 cadena += "<td id=" + i + "-" + j +">"+x.charAt(j-1)+"</td>";
             }
@@ -61,7 +61,12 @@ function addNumber(cell){
         } else{
             cell.innerText = numbervalue;
         }
+        
     }
+    if(checkwin()){
+        alert("Has ganado");
+    }
+
 }
 
 
@@ -98,5 +103,23 @@ function highlight(e,origin){
     }
 }
 
+function checkright(cell){
+    let [fil, col] = cell.id.split("-");
+    let x = solution[fil-1];
+    if (cell.innerText===x.charAt(col-1)){  
+        cell.removeAttribute('onclick');
+        cell.removeAttribute('onmouseover');
+    }
+}
 
-
+function checkwin(){
+    for (let i = 1; i <= 9; i++){
+        let x = solution[i-1];
+        for (let j = 1; j <= 9; j++){
+            if (document.getElementById(i+"-"+j).innerText !== x.charAt(j-1)){
+                return false;
+            }
+        }
+    }
+    return true;
+}
