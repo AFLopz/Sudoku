@@ -1,11 +1,39 @@
 let numbers = ['1','2','3','4','5','6','7','8','9','X'];
+var board = [
+    "--74916-5",
+    "2---6-3-9",
+    "-----7-1-",
+    "-586----4",
+    "--3----9-",
+    "--62--187",
+    "9-4-7---2",
+    "67-83----",
+    "81--45---"
+    ]
+var solution = [
+    "387491625",  
+    "241568379",   
+    "569327418",   
+    "758619234",   
+    "123784596",   
+    "496253187",   
+    "934176852",   
+    "675832941",   
+    "812945763"  
+    ]
 let numbervalue = null;
 function start(){
     let cadena = "<table id='TablaPrincipal' align=center>";
     for (let i = 1; i <= 9; i++) {
         cadena += "<tr>";
         for (let j = 1; j <= 9; j++) {
-            cadena += "<td onclick='addNumber(this)' onmouseover='highlight(event,this)' onmouseout='highlight(event,this)' id=" + i + "-" + j + "></td>";
+            let x = board[i-1];
+            if (x.charAt(j-1)==="-"){
+                cadena += "<td onclick='addNumber(this)' onmouseover='highlight(event,this)' onmouseout='highlight(event,this)' id=" + i + "-" + j + "></td>";
+            }else{
+                cadena += "<td id=" + i + "-" + j +">"+x.charAt(j-1)+"</td>";
+            }
+            
         }
         cadena += "</tr>";
     }
@@ -69,7 +97,6 @@ function highlight(e,origin){
         }
     }
 }
-function alertar(origin){
-    alert(origin.id);
-}
+
+
 
