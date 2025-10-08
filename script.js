@@ -9,6 +9,15 @@ var board = [
     "9-4-7---2",
     "67-83----",
     "81--45---"
+    /*"-87491625",  
+    "241568379",   
+    "569327418",   
+    "758619234",   
+    "123784596",   
+    "496253187",   
+    "934176852",   
+    "675832941",   
+    "81294576-"*/ 
     ]
 var solution = [
     "387491625",  
@@ -104,11 +113,15 @@ function highlight(e,origin){
 }
 
 function checkright(cell){
+    let error = document.getElementById("digiterror");
     let [fil, col] = cell.id.split("-");
     let x = solution[fil-1];
     if (cell.innerText===x.charAt(col-1)){  
         cell.removeAttribute('onclick');
         cell.removeAttribute('onmouseover');
+    }else{
+        cell.innerText="";
+        error.innerHTML++;
     }
 }
 
@@ -123,3 +136,5 @@ function checkwin(){
     }
     return true;
 }
+
+
